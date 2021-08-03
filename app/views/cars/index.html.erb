@@ -1,1 +1,5 @@
 <h1>Cars will be shown here </h1>
+
+<% @cars.each do |car| %>
+    <h2><%= link_to car.name_and_year, car_path(car) %> - <%= number_to_currency(car.price)%></h2>
+    <% end %> 
