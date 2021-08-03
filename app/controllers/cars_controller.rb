@@ -12,6 +12,7 @@ class CarsController < ApplicationController
     end 
     
     def create
+        byebug
     end 
 
     def edit
@@ -21,4 +22,7 @@ class CarsController < ApplicationController
     end 
 
     private
+    def car_params
+        # params.require(:car).permit{:name,}
+    end 
 end
