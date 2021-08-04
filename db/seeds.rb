@@ -22,7 +22,5 @@ Car.create([
 # t.string "name"
 # t.integer "year"
 # t.integer "price"
-# t.datetime "created_at", precision: 6, null: false
-# t.datetime "updated_at", precision: 6, null: false
 # t.string "condition"
 # t.string "color"
