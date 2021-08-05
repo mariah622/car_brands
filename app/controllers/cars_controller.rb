@@ -13,6 +13,7 @@ class CarsController < ApplicationController
     
     def create 
         @car = Car.new(car_params)     
+        byebug
         if @car.save
             redirect_to cars_path
         else
