@@ -3,7 +3,12 @@
 <h2><%= @car.name %></h2>
 <ul>
    <li><%= @car.year %></li>
+   <li><%= number_to_currency(@car.price) %></li>
    <li><%= @car.condition %></li>
-   <li><%= @car.price %></li>
+   <li><%= @car.color %></li>
 </ul>
+
+<h2><%= link_to "Edit Car", edit_car_path(@car) %></h2>
+<h2><%= link_to "Delete Car", car_path(@car), method: 'delete' %></h2>
+<h2><%= link_to "Back to Car list", cars_path(@car) %></h2>
 
