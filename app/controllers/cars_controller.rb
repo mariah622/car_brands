@@ -9,6 +9,7 @@ class CarsController < ApplicationController
 
     def new 
         @car = Car.new
+        @car.build_brand
     end 
     
     def create 
@@ -42,7 +43,7 @@ class CarsController < ApplicationController
     
     private
     def car_params
-        params.require(:car).permit(:name, :year, :price, :condition, :color)
+        params.require(:car).permit(:name, :year, :price, :condition, :color, brand_attributes: [:name, :year_created])
     end
 
 

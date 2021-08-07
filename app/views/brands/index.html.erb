@@ -1,0 +1,9 @@
+<h1>Brands will be shown here </h1>
+
+<% @brands.each do |brand| %>
+    <h2><%= link_to brand.name, brand_path(brand) %> - <%= brand.year_created %></h2>
+<% end %> 
+
+
+
+<h1><%= link_to "Create New Car", new_car_path(@cars) %></h1>
