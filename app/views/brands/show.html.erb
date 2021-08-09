@@ -3,6 +3,14 @@
 <h2><%= @brand.name %></h2>
 <p>Year created: <%= @brand.year_created %></p>
 
+<hr>
+
+
+<h2> List of <%= @brand.name %> cars </h2>
+<% @brand.cars.each do |car| %>
+    <h3><%= link_to car.name_and_year, car_path(car) %> - <%= car.color %></h3>
+<% end %> 
+
 <br>
 
 <h2><%= link_to "Edit Brand", edit_brand_path(@brand) %></h2>

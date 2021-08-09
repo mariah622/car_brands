@@ -6,11 +6,12 @@ class BrandsController < ApplicationController
 
     def show
         @brand = Brand.find_by_id(params[:id])
-        @cars  = Car.all
     end
 
     def new 
         @brand = Brand.new
+        3.times {@brand.cars.build} 
+
     end 
     
     def create 
@@ -44,7 +45,7 @@ class BrandsController < ApplicationController
     
     private
     def brand_params
-        params.require(:brand).permit(:name, :year_created)
+        params.require(:brand).permit(:name, :year_created, cars_attributes: [:name, :year, :price, :condition, :color])
     end
 
 
