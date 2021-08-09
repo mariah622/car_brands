@@ -28,8 +28,8 @@ class CarsController < ApplicationController
 
     def update
         @car = Car.find_by_id(params[:id])
-        @car.update(car_params)
         if @car.valid?
+            @car.update(car_params)
             redirect_to car_path(@car)
         else 
             render :edit

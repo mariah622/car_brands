@@ -10,7 +10,7 @@ class BrandsController < ApplicationController
 
     def new 
         @brand = Brand.new
-        3.times {@brand.cars.build} 
+        3.times { @brand.cars.build } 
 
     end 
     
@@ -29,8 +29,8 @@ class BrandsController < ApplicationController
 
     def update
         @brand = Brand.find_by_id(params[:id])
-        @brand.update(brand_params)
         if @brand.valid?
+            @brand.update(brand_params)
             redirect_to brand_path(@brand)
         else 
             render :edit
