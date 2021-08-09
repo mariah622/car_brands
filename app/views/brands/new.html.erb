@@ -1,12 +1,21 @@
+<% if @brand.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@brand.errors.count, "error") %> prohibited this brand from being saved:</h2>
+
+    <ul>
+      <% @brand.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
 <h2>Create a Brand </h2>
 <%= form_for (@brand) do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-    <br>
-    <%= f.label :year_created %>
-    <%= f.number_field :year_created %>
-    
-    <br> 
+
+    <%= render partial: 'form', locals: { fp: f} %>
+
 <h2>Create a Car </h2>
 
     <%= f.fields_for :cars do |s| %>
@@ -25,7 +34,7 @@
         <br>
         <%= s.label :color %>
         <%= s.text_field :color %>
-        <hr>
+        <br>
     <% end %>
 
     <%= submit_tag "Create brand and cars" %>

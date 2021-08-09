@@ -1,0 +1,33 @@
+
+
+<%= render partial: "layouts/error", locals: { object: @car } %>
+
+
+<%= form_for(@car) do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <br>
+    <%= f.label :year %>
+    <%= f.number_field :year%>
+    <br>
+    <%= f.label :price %>
+    <%= f.number_field :price, step: 0.01 %>
+    <br>
+    <%= f.label :condition %>
+    <%= f.text_field :condition%>
+    <br>
+    <%= f.label :color %>
+    <%= f.text_field :color %>
+
+    <h2>Select an already existing Brand </h2>
+    <%= f.collection_select :brand_id, Brand.all, :id, :name %>
+    
+    <br>
+
+    <h2> Create a new Car Brand </h2>
+  
+    <%= f.fields_for :brand do |b| %>
+      <%= render partial: 'brands/form', locals: { fp: b} %>
+    <% end %> 
+    <%= submit_tag "Create Car" %>
+<% end %>

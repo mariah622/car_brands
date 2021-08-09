@@ -1,21 +1,3 @@
 <h1>Edit Car</h1>
-<%= form_for(@car) do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-    <br>
-    <%= f.label :year %>
-    <%= f.number_field :year%>
-    <br>
-    <%= f.label :price %>
-    <%= f.number_field :price%>
-    <br>
-    <%= f.label :condition %>
-    <%= f.text_field :condition%>
-    <br>
-    <%= f.label :color %>
-    <%= f.text_field :color%>
-    <br>
-   
 
-    <%= submit_tag "Edit Car" %>
-<% end %>
+<%= render partial: 'form' %>

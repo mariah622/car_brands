@@ -1,4 +1,5 @@
 class CarsController < ApplicationController
+    layout 'car'
     def index
         @cars = Car.all
     end 
