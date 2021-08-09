@@ -1,8 +1,8 @@
 <h1>Your Car List</h1>
-<p> If you want to learn more about a vehicle, click the vehicle name </p>
+<p> If you want to learn more about a vehicle, click the vehicle name. </p>
 
 <% @cars.each do |car| %>
-    <h2><%= car.brand.name %> - <%= link_to car.name_and_year, car_path(car) %> - <%= car.color %></h2>
+    <h2> <%= car.brand.name %> -  <%= link_to car.name_and_year, car_path(car) %>  <%= car.color %></h2>
 <% end %> 
 
 <br>

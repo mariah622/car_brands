@@ -1,0 +1,10 @@
+<h1> Here is a brand </h1>
+
+<h2><%= @brand.name %></h2>
+<p>Year created: <%= @brand.year_created %></p>
+
+<br>
+
+<h2><%= link_to "Edit Brand", edit_brand_path(@brand) %></h2>
+<h2><%= link_to "Delete Brand", brand_path(@brand), method: 'delete' %></h2>
+<h2><%= link_to "Back to Brand list", brands_path(@brand) %></h2>

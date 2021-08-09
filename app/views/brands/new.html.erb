@@ -1,0 +1,9 @@
+<%= form_for (@brand) do |b| %>
+    <%= b.label :name %>
+    <%= b.text_field :name %>
+    <br>
+    <%= b.label :year_created %>
+    <%= b.number_field :year_created %>
+    
+    <%= submit_tag "Create Brand" %>
+  <% end %> 

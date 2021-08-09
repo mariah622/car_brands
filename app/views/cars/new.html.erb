@@ -1,4 +1,4 @@
-<h1>Car Form</h1>
+<h1>Create a Car</h1>
 
 <% if @car.errors.any? %>
   <div id="error_explanation">
@@ -28,7 +28,12 @@
     <%= f.label :color %>
     <%= f.text_field :color %>
 
-    <h2> Car brand </h2>
+    <h2>Select an already existing Brand </h2>
+    <%= f.collection_select :brand_id, Brand.all, :id, :name %>
+    
+    <br>
+
+    <h2> Create a new Car Brand </h2>
   
     <%= f.fields_for :brand do |b| %>
       <%= b.label :name %>
