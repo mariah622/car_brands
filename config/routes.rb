@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   get '/auth/google_oauth2/callback', to: 'sessions#omniauth'
+  delete '/logout', to: 'sessions#destroy'
 
   resources :users
   resources :cars
