@@ -11,15 +11,26 @@
   </head>
 
   <body>
+
+
   <%= link_to "Create Car", new_car_path %> |
   <%= link_to "Cars", cars_path %> |
   <%= link_to "Create Brand", new_brand_path %> |
   <%= link_to "Brands", brands_path %> |
-  <%= button_to "Sign in with Google", '/auth/google_oauth2' %>
-  <%= link_to 'Log Out', logout_path, method: 'delete' %>
+
+
+   <% if !logged_in? %>
+  <%= button_to "Sign in with Google", '/auth/google_oauth2' %> | 
+  <%= link_to 'Log In', login_path %>
+  <% else %> 
+  <%= link_to "Log Out", logout_path, method: 'delete' %>
+  <% end %> 
+
+  
   <% flash.each do |type, msg| %>
     <%= msg %>
   <% end %>
-    <%= yield %>
+
+  <%= yield %>
   </body>
 </html>
