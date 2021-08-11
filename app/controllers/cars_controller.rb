@@ -1,7 +1,14 @@
 class CarsController < ApplicationController
+    before_action :redirect_to_logged_in?
+    
     layout 'car'
+
     def index
-        @cars = Car.all
+        if params[:brand_id] &&  @brand = Brand.find_by_id(params[:brand_id])
+            @cars = @brand.cars
+        else 
+            @cars = Car.order_by_price
+        end 
     end 
 
     def show
@@ -9,12 +16,20 @@ class CarsController < ApplicationController
     end 
 
     def new 
-        @car = Car.new
-        @car.build_brand
+        if params[:brand_id] &&  @brand = Brand.find_by_id(params[:brand_id])
+            # @shoe = Shoe.new(brand_id: params[:brand_id])
+            @car = @brand.cars.build
+        else
+            @car = Car.new
+            @car.build_brand
+        end
     end 
     
     def create 
         @car = Car.new(car_params)     
+        if params[:brand_id]
+            @brand = Brand.find_by_id(params[:brand_id])
+        end
         if @car.save
             redirect_to cars_path
         else
@@ -28,8 +43,8 @@ class CarsController < ApplicationController
 
     def update
         @car = Car.find_by_id(params[:id])
+        @car.update(car_params)
         if @car.valid?
-            @car.update(car_params)
             redirect_to car_path(@car)
         else 
             render :edit
@@ -46,6 +61,8 @@ class CarsController < ApplicationController
     def car_params
         params.require(:car).permit(:name, :year, :price, :condition, :color, :brand_id, brand_attributes: [:name, :year_created])
     end
+
+
 
 
 end

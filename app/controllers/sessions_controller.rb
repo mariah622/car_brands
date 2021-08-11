@@ -1,13 +1,16 @@
 class SessionsController < ApplicationController
+    def welcome 
+        render layout: 'welcome'
+    end
 
     def new
     end 
 
     def create
         user = User.find_by_email(params[:user][:email])
-        if user && user.authenticate(params[:user][:password])
+        if user.try(:authenticate, params[:user][:password])
             session[:user_id] = user.id
-            redirect_to cars_path
+            redirect_to brands_path
         else
             flash[:message] = "Invalid credentials. Please try again. "
             redirect_to login_path
@@ -15,12 +18,7 @@ class SessionsController < ApplicationController
     end 
 
     def omniauth
-        # User.find_or_create_by(name: params["name"])
-        user = User.find_or_create_by(uid: auth['uid'], provider: auth['provider']) do |u| 
-            u.email = auth['info']['email']
-            u.username = auth['info']['name']
-            u.password = SecureRandom.hex(15)
-        end
+        user = User.from_omniauth(auth)
         
         if user.valid? 
             session[:user_id] = user.id
@@ -28,11 +26,6 @@ class SessionsController < ApplicationController
             redirect_to brands_path
         else
         end
-        #email
-        #password
-        #username
-        #uid
-        #provider
     end 
 
     def destroy 

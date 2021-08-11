@@ -1,5 +1,6 @@
 class Car < ApplicationRecord
     belongs_to :brand
+    belongs_to :user
     accepts_nested_attributes_for :brand
     
     def brand_attributes=(hash_of_attributes)
@@ -13,9 +14,13 @@ class Car < ApplicationRecord
     validates :price, numericality: true 
     validates :year, numericality: true 
 
+    scope :order_by_price, -> {order(:price)}
+
+    # scope :order_by_condition, -> {order(:condition)}
 
 
     def name_and_year
         "#{self.name} : #{self.year}"
     end
-end
+
+end 

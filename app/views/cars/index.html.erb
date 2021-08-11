@@ -1,8 +1,14 @@
 <h1>Your Car List</h1>
 <p> If you want to learn more about a vehicle, click the vehicle name. </p>
 
+<h1>Filter By Color:</h1>
+<%= form_tag(cars_path, method: "get") do %>
+<%= collection_select :car, :color, Car.select(:color).distinct, :color, :color, {:include_blank => 'Choose Color'}%>
+<%= submit_tag "Filter"%>
+<% end %>
+
 <% @cars.each do |car| %>
-    <h2><%= link_to car.name_and_year, car_path(car) %>  <%= car.color %></h2>
+    <h2><%= link_to car.name_and_year, car_path(car) %> - <%= car.color %> - <%= number_to_currency(car.price) %></h2>
 <% end %> 
 
 <br>
