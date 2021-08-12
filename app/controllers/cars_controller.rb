@@ -27,6 +27,7 @@ class CarsController < ApplicationController
     
     def create 
         @car = Car.new(car_params)     
+        @car.user = current_user
         if params[:brand_id]
             @brand = Brand.find_by_id(params[:brand_id])
         end

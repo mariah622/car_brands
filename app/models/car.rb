@@ -1,6 +1,7 @@
 class Car < ApplicationRecord
     belongs_to :brand
     belongs_to :user
+    has_many :customizations
     accepts_nested_attributes_for :brand
     
     def brand_attributes=(hash_of_attributes)
