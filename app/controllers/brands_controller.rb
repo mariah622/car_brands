@@ -16,7 +16,13 @@ class BrandsController < ApplicationController
     end 
     
     def create 
-        @brand = Brand.new(brand_params)   
+        @brand = Brand.new(brand_params)
+        @brand.cars.each do |c|
+            c.user = current_user
+        end 
+        
+
+        
         if @brand.save
             redirect_to brands_path
         else
