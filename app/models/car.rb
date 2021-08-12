@@ -16,6 +16,7 @@ class Car < ApplicationRecord
     validates :year, numericality: true 
 
     scope :order_by_price, -> {order(:price)}
+    scope :color_selector, ->(color){where('color ==  ?', color)}
 
     # scope :order_by_condition, -> {order(:condition)}
 

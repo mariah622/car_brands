@@ -3,15 +3,10 @@
 
 <h1>Filter By Color:</h1>
 <%= form_tag(cars_path, method: "get") do %>
-<%= collection_select :car, :color, Car.select(:color).distinct, :color, :color, {:include_blank => 'Choose Color'}%>
-<%= submit_tag "Filter"%>
-<% end %>
+    <%= collection_select :car, :color, Car.select(:color).distinct, :color, :color, {:include_blank => 'Choose Color'}%>
+    <%= submit_tag "Filter"%>
+    <% end %>
 
-<% @cars.each do |car| %>
-    <h2><%= link_to car.name_and_year, car_path(car) %> - <%= car.color %> - <%= number_to_currency(car.price) %></h2>
-<% end %> 
-
-<br>
-
+<%= render partial: "car", collection: @cars %>
 
 <h1><%= link_to "Create New Car", new_car_path(@cars) %></h1>

@@ -11,7 +11,14 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
 
+  resources :users
   resources :cars
   resources :brands
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
+
+
+# resources :cars, only: [:index, :new, :create]
+# resources :brands do 
+#   resources :cars, shallow: true 
+#  end

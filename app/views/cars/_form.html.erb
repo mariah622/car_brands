@@ -3,7 +3,7 @@
 <%= render partial: "layouts/error", locals: { object: @car } %>
 
 
-<%= form_for(@car) do |f| %>
+<%= form_for([@brand, @car]) do |f| %>
     <%= f.label :name %>
     <%= f.text_field :name %>
     <br>

@@ -11,9 +11,7 @@
   </head>
 
   <body>
-  <%= link_to "Create Car", new_car_path %> |
-  <%= link_to "Cars", cars_path %> |
-  <%= link_to "Brands", brands_path %>
+  <%= render 'layouts/navigation' %>
     <%= yield %>
   </body>
 </html>
