@@ -6,21 +6,20 @@ class BrandsController < ApplicationController
     end 
 
     def show
-        @brand = Brand.find_by_id(params[:id])
+        @brand = Brand.find_by_id(params[:id])    
     end
 
     def new 
         @brand = Brand.new
         3.times { @brand.cars.build } 
-
     end 
     
     def create 
         @brand = Brand.new(brand_params)
         @brand.cars.each do |c|
             c.user = current_user
-        end
-
+        end 
+        
         if @brand.save
             redirect_to brands_path
         else
@@ -30,6 +29,7 @@ class BrandsController < ApplicationController
 
     def edit
         @brand = Brand.find_by_id(params[:id])
+        redirect_if_not_authorized
     end 
 
     def update
@@ -52,6 +52,12 @@ class BrandsController < ApplicationController
     def brand_params
         params.require(:brand).permit(:name, :year_created, cars_attributes: [:name, :year, :price, :condition, :color])
     end
+
+    def redirect_if_not_authorized
+        if !current_user
+            redirect_to brands_path
+        end 
+    end 
 
 
 end

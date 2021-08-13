@@ -45,6 +45,7 @@ class CarsController < ApplicationController
         if params[:brand_id] &&  @brand = Brand.find_by_id(params[:brand_id])
             @car = @brand.cars.build
         end 
+        redirect_if_not_authorized
     end 
 
     def update
@@ -59,9 +60,12 @@ class CarsController < ApplicationController
     def destroy
         @car.destroy
         redirect_to cars_path
+        
+       
     end 
     
     private
+
     def car_params
         params.require(:car).permit(:name, :year, :price, :condition, :color, :brand_id, brand_attributes: [:name, :year_created])
     end
@@ -69,5 +73,13 @@ class CarsController < ApplicationController
     def find_car
         @car = Car.find_by_id(params[:id])
     end
+
+    def redirect_if_not_authorized
+        if @car.user != current_user
+            redirect_to cars_path
+        end 
+    end 
+
+
 
 end

@@ -1,0 +1,10 @@
+<h1> Here are your car customization </h1>
+<p> Click on a customization to find out what vehicle it is for: </p>
+
+
+
+<% @customizations.each do |customization| %>
+    <h2><%= link_to customization.part, customization %>
+<% end %>
+
+<h2><%= link_to "Create another customization", new_customization_path(@customization_params)%></h2>

@@ -1,4 +1,4 @@
-<h1> Here is a car </h1>
+<h1> Here is your car! </h1>
 
 <h2><%= @car.name %></h2>
 <ul>
@@ -8,7 +8,15 @@
    <li><%= @car.color %></li>
 </ul>
 
-<h2><%= link_to "Edit Car", edit_car_path(@car) %></h2>
-<h2><%= link_to "Delete Car", car_path(@car), method: 'delete' %></h2>
-<h2><%= link_to "Back to Car list", cars_path(@car) %></h2>
+<% if @car.user == current_user %>
+<h2>Would you like to customize this vehicle or another vehicle. Click Below! </h2>
+<h3><%= link_to "Create a customization", new_customization_path(@customization_params)%></h3>
+<hr>
+    <h3><%= link_to "Edit Car", edit_car_path(@car) %></h3>
+    <h3><%= link_to "Delete Car", car_path(@car), method: 'delete' %></h3>
+    <h3><%= link_to "Back to Car list", cars_path(@car) %></h3>
+<% else %>
+    <h3><%= link_to "Back to Car list", cars_path(@car) %></h3>
+<% end %>
+
 

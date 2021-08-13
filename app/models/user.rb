@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :cars
   has_many :brands, through: :cars
+  has_many :customizations, through: :cars
   validates :email, presence: true, uniqueness: true 
   validates :username, presence: true 
   has_secure_password

@@ -1,0 +1,20 @@
+<h1>Customizations </h1>
+<hr>
+
+    <h2><%= @customization.car.name %> </h2>
+    <ul>
+        <li><%= @customization.part %></li>
+        <li><%= @customization.color %></li>
+    </ul>
+
+
+
+<% if !current_user %>
+    <h2><%= link_to "Edit Customization", edit_customization_path(@customization) %></h2>
+    <h2><%= link_to "Delete Customization", customization_path(@customization), method: 'delete' %></h2>
+    <h2><%= link_to "Back to Customization list", customizations_path(@customization)%></h2>
+    <br>
+    <hr>
+<% else %>
+    <h2><%= link_to "Back to Car list", cars_path(@car) %></h2>
+<% end %>

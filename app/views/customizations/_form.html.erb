@@ -1,0 +1,18 @@
+<%= render partial: "layouts/error", locals: { object: @customization } %>
+
+
+<%= form_for([@customization]) do |f| %>
+
+    <h2>Select an already existing Car </h2>
+    <%= f.collection_select :car_id, Car.where(:user_id => current_user.id), :id, :name %>
+
+    <%= f.label :part %>
+    <%= f.text_field :part %>
+    <br>
+    <%= f.label :color %>
+    <%= f.text_field :color%>
+    <%= submit_tag "Create Customization for Car" %>
+
+
+    <h2><%= link_to "Back to Customization list", customizations_path(@customization)%></h2>
+<% end %>
