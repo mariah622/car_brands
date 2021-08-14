@@ -11,10 +11,11 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
 
+  resources :customizations
   resources :users
-  resources :cars, only: [:index, :new, :create]
+  resources :cars
    resources :brands do 
-    resources :cars, shallow: true 
+    resources :cars
    end
 end 
 

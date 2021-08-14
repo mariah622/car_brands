@@ -1,28 +1,8 @@
 <%= render partial: "layouts/error", locals: { object: @brand } %>
 
-<h2>Create a Brand </h2>
+<h2>Edit a Brand </h2>
 <%= form_for (@brand) do |f| %>
   <%= render partial: 'form', locals: { fp: f} %>
   <br> 
-  <h2>Create a Car </h2>
-
-    <%= f.fields_for :cars do |s| %>
-        <br>
-        <%= s.label :name %>
-        <%= s.text_field :name %>
-        <br>
-        <%= s.label :year %>
-        <%= s.number_field :year%>
-        <br>
-        <%= s.label :price %>
-        <%= s.number_field :price, step: 0.01 %>
-        <br>
-        <%= s.label :condition %>
-        <%= s.text_field :condition%>
-        <br>
-        <%= s.label :color %>
-        <%= s.text_field :color %>
-        <hr>
-    <% end %>
-    <%= submit_tag "Edit brand and cars" %>
+    <%= submit_tag "Edit Brand " %>
 <% end %> 

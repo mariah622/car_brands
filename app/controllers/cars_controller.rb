@@ -10,7 +10,6 @@ class CarsController < ApplicationController
         else 
             @cars = Car.order_by_price
         end
-
         @cars = Car.color_selector(params[:car][:color]) if params[:car] && !params[:car][:color].blank?
     end 
 
@@ -57,9 +56,7 @@ class CarsController < ApplicationController
     
     def destroy
         @car.destroy
-        redirect_to cars_path
-        
-       
+        redirect_to cars_path 
     end 
     
     private
@@ -77,7 +74,5 @@ class CarsController < ApplicationController
             redirect_to cars_path
         end 
     end 
-
-
 
 end
