@@ -41,13 +41,11 @@ class CarsController < ApplicationController
         end
     end
 
-    def edit
+   def edit
         if params[:brand_id] &&  @brand = Brand.find_by_id(params[:brand_id])
             @car = @brand.cars.build
         end 
-        redirect_if_not_authorized
     end 
-
     def update
         @car.update(car_params)
         if @car.valid?

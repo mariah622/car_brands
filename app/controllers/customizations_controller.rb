@@ -6,29 +6,20 @@ class CustomizationsController < ApplicationController
         @customizations = current_user.customizations
 
     end 
-
     
     def show
         @customization = Customization.find_by_id(params[:id])
     end 
 
     def new
-        if params[:car_id] &&  @car = Car.find_by_id(params[:car_id])
-            @customization = @car.customizations.build
-        else
-            @customization = Customization.new
-            @customization.build_car
-        end
+        @customization = Customization.new
 
     end 
     
     def create
         @customization = Customization.new(customization_params)     
-        @customization.car.user = current_user
-        if params[:car_id]
-            @car = Car.find_by_id(params[:brand_id])
-        end
-        
+        # @customization.car.user = current_user
+
         if @customization.save
             redirect_to customizations_path
         else

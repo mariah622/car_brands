@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-\
+  resources :customizations
+
   root to: 'sessions#welcome'
 
   get '/auth/google_oauth2/callback', to: 'sessions#omniauth'
@@ -11,14 +12,10 @@ Rails.application.routes.draw do
   post '/signup', to: 'users#create'
 
   resources :users
-  resources :cars
-  resources :brands
-  resources :customizations
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-end
+  resources :cars, only: [:index, :new, :create]
+   resources :brands do 
+    resources :cars, shallow: true 
+   end
+end 
 
 
-# resources :cars, only: [:index, :new, :create]
-# resources :brands do 
-#   resources :cars, shallow: true 
-#  end
