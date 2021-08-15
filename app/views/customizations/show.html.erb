@@ -9,7 +9,7 @@
 
 
 
-<% if !current_user %>
+<% if current_user %>
     <h2><%= link_to "Edit Customization", edit_customization_path(@customization) %></h2>
     <h2><%= link_to "Delete Customization", customization_path(@customization), method: 'delete' %></h2>
     <h2><%= link_to "Back to Customization list", customizations_path(@customization)%></h2>
