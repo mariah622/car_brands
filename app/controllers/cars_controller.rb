@@ -40,10 +40,7 @@ class CarsController < ApplicationController
         end
     end
 
-   def edit
-        if params[:brand_id] &&  @brand = Brand.find_by_id(params[:brand_id])
-            @car = @brand.cars.build
-        end 
+    def edit
     end 
     def update
         @car.update(car_params)
