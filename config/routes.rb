@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :customizations
 
   root to: 'sessions#welcome'
 
@@ -13,9 +12,9 @@ Rails.application.routes.draw do
 
   resources :customizations
   resources :users
-  resources :cars
+  resources :cars, only: [:new, :create, :index]
    resources :brands do 
-    resources :cars
+    resources :cars, shallow: true 
    end
 end 
 
