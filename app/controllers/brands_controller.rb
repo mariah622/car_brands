@@ -53,4 +53,4 @@ class BrandsController < ApplicationController
     def find_brand
         @brand = Brand.find_by_id(params[:id])
     end
-end
+end  

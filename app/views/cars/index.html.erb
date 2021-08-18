@@ -9,5 +9,15 @@
 
 <%= render partial: "car", collection: @cars %>
 
-<h2><%= link_to "Create New Car", new_brand_car_path(@cars) %></h2>
+<h2><%= link_to "Create New Car", new_brand_car_path(@brand) %></h2>
+
+<h1> Oldest Car! </h1>
+<% @oldest_car.each do |c| %>
+<ul>
+    <li><%= c.name %></li>
+    <li><%= c.color %></li>
+    <li><%= c.year %></li>
+    <li><%= number_to_currency(c.price) %></li>
+</ul>
+<% end %>
 

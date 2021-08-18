@@ -7,14 +7,27 @@ class CarsController < ApplicationController
     def index
         if params[:brand_id] &&  @brand = Brand.find_by_id(params[:brand_id])
             @cars = @brand.cars
+            
+            
         else 
             @cars = Car.order_by_price
+
+    
+          
+
         end
         @cars = Car.color_selector(params[:car][:color]) if params[:car] && !params[:car][:color].blank?
+        @oldest_car = @brand.cars.oldest_car
+    
     end 
 
-    def show  
+    def show 
     end 
+
+    # def oldest_car
+    #     @cars = Car.oldest_car
+    #     render :index
+    # end
 
     def new 
         if params[:brand_id] &&  @brand = Brand.find_by_id(params[:brand_id])
@@ -34,7 +47,7 @@ class CarsController < ApplicationController
         end
         
         if @car.save
-            redirect_to cars_path
+            redirect_to brands_path
         else
             render :new
         end

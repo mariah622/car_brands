@@ -18,11 +18,13 @@ class Car < ApplicationRecord
     scope :order_by_price, -> {order(:price)}
     scope :color_selector, ->(color){where('color ==  ?', color)}
 
-    # scope :order_by_condition, -> {order(:condition)}
-
 
     def name_and_year
         "#{self.name} : #{self.year}"
+    end
+
+    def self.oldest_car
+        self.order(year: :asc).limit(1)
     end
 
 end 
